@@ -9,6 +9,4 @@ public interface TehtavaDao {
         Optional<Tehtava> haeIdlla(int id);
         int lisaa(Tehtava tehtava);
         Tehtava poista(int id);
-        boolean muuta(int id, Tehtava tiedot);
-
 }
