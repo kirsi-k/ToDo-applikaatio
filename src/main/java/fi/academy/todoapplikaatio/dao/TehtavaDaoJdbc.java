@@ -50,18 +50,31 @@ public class TehtavaDaoJdbc implements TehtavaDao {
     }
 
     @Override
-    public Optional<Tehtava> haeIdlla(int id) {
-        return Optional.empty();
-    }
-
-    @Override
     public int lisaa(Tehtava tehtava) {
-        return 0;
+        String teksti = tehtava.getTeksti();
+        String sql = "INSERT INTO tehtavalista(teksti) VALUES (?)";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)){
+            pstmt.setString(1, teksti);
+            pstmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return tehtava.getId();
     }
 
     @Override
     public Tehtava poista(int id) {
+        String sql = "DELETE FROM tehtavalista WHERE id=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)){
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
-
+    @Override
+    public Optional<Tehtava> haeIdlla(int id) {
+        return Optional.empty();
+    }
 }
