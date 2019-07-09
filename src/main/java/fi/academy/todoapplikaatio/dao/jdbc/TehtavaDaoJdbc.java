@@ -1,7 +1,8 @@
-package fi.academy.todoapplikaatio.dao;
+package fi.academy.todoapplikaatio.dao.jdbc;
 
 
 import fi.academy.todoapplikaatio.Tehtava;
+import fi.academy.todoapplikaatio.dao.TehtavaDao;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Qualifier("jdbc")
@@ -52,14 +52,20 @@ public class TehtavaDaoJdbc implements TehtavaDao {
     @Override
     public int lisaa(Tehtava tehtava) {
         String teksti = tehtava.getTeksti();
+        int avain = -1;
         String sql = "INSERT INTO tehtavalista(teksti) VALUES (?)";
-        try (PreparedStatement pstmt = con.prepareStatement(sql)){
+        try (PreparedStatement pstmt = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
             pstmt.setString(1, teksti);
             pstmt.executeUpdate();
+            ResultSet avaimet = pstmt.getGeneratedKeys();
+            while (avaimet.next()) {
+                avain = avaimet.getInt(1);
+                tehtava.setId(avain);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return tehtava.getId();
+        return avain;
     }
 
     @Override
@@ -72,9 +78,5 @@ public class TehtavaDaoJdbc implements TehtavaDao {
             e.printStackTrace();
         }
         return null;
-    }
-    @Override
-    public Optional<Tehtava> haeIdlla(int id) {
-        return Optional.empty();
     }
 }
