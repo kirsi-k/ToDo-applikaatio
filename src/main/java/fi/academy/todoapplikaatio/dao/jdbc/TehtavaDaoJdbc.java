@@ -33,7 +33,7 @@ public class TehtavaDaoJdbc implements TehtavaDao {
 
     @Override
     public List<Tehtava> haeKaikki() {
-        String sql = "SELECT id,teksti FROM tehtavalista";
+        String sql = "SELECT id,teksti FROM tehtava";
         List<Tehtava> haetut = new ArrayList<>();
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             for (ResultSet rs = pstmt.executeQuery(); rs.next() ;) {
@@ -53,7 +53,7 @@ public class TehtavaDaoJdbc implements TehtavaDao {
     public int lisaa(Tehtava tehtava) {
         String teksti = tehtava.getTeksti();
         int avain = -1;
-        String sql = "INSERT INTO tehtavalista(teksti) VALUES (?)";
+        String sql = "INSERT INTO tehtava(teksti) VALUES (?)";
         try (PreparedStatement pstmt = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
             pstmt.setString(1, teksti);
             pstmt.executeUpdate();
@@ -70,7 +70,7 @@ public class TehtavaDaoJdbc implements TehtavaDao {
 
     @Override
     public Tehtava poista(int id) {
-        String sql = "DELETE FROM tehtavalista WHERE id=?";
+        String sql = "DELETE FROM tehtava WHERE id=?";
         try (PreparedStatement statement = con.prepareStatement(sql)){
             statement.setInt(1,id);
             statement.executeUpdate();
