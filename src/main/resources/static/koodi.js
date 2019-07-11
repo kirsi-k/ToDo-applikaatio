@@ -3,10 +3,7 @@ function haeKaikki() {
     var tulosElementti = document.getElementById('tulos1');
     tulosElementti.innerHTML = '';
 
-    axios.get('http://localhost:8080/api/todot', {
-        withCredentials: false,
-        crossDomain: true,
-    })
+    axios.get('http://localhost:8080/api/todot')
         .then(function (response) {
             tulosElementti.innerHTML = generateSuccessHTMLOutput(response);
         })
