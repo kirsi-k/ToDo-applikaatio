@@ -15,7 +15,7 @@ function generateSuccessHTMLOutput(response){
     return response.data.map(function (tehtava) {
         return (
             '<ul class="list-unstyled">' +
-                '<li class="row">' + tehtava.teksti + '</li>' +
+                '<li class="row">' + tehtava.id + " " + tehtava.teksti + '</li>' +
             '</ul>'
         );
     }).join('');
@@ -46,9 +46,11 @@ function poistaTehtava() {
     var todoId = document.getElementById('todoId').value;
     tulosElementti.innerHTML = '';
 
-    axios.delete('http://localhost:8080/api/todot/${todoId}')
+    axios.delete('http://localhost:8080/api/todot/' + todoId, {
+        id: todoId,
+    })
         .then(function (response) {
-            tulosElementti.innerHTML = 'Poistit tehtävän ${todoId}';
+            tulosElementti.innerHTML = 'Poistit tehtävän!';
         })
         .catch(function (error) {
             tulosElementti.innerHTML = generateErrorHTMLOutput(error);
