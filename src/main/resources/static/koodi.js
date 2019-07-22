@@ -41,6 +41,8 @@ function performPostRequest(e) {
         });
     e.preventDefault();
 }
+
+
 function poistaTehtava() {
     var tulosElementti = document.getElementById('tulos3');
     var todoId = document.getElementById('todoId').value;

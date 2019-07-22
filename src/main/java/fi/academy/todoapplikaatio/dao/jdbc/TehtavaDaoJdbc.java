@@ -70,6 +70,7 @@ public class TehtavaDaoJdbc implements TehtavaDao {
 
     @Override
     public Tehtava poista(int id) {
+        Tehtava poistettu = new Tehtava();
         String sql = "DELETE FROM tehtava WHERE id=?";
         try (PreparedStatement statement = con.prepareStatement(sql)){
             statement.setInt(1,id);
@@ -77,6 +78,6 @@ public class TehtavaDaoJdbc implements TehtavaDao {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return poistettu;
     }
 }

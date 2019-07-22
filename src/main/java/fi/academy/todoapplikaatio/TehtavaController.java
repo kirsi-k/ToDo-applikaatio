@@ -27,13 +27,13 @@ public class TehtavaController {
     }
     @PostMapping("")
     public ResponseEntity<?> lisaaUusiTehtava(@RequestBody Tehtava tehtava){
-        int id = tehtavaDao.lisaa(tehtava);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(id)
-                .toUri();
-        return ResponseEntity.created(location).body(tehtava);
+            int id = tehtavaDao.lisaa(tehtava);
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(id)
+                    .toUri();
+            return ResponseEntity.created(location).body(tehtava);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> poistaTehtava(@PathVariable int id){
@@ -42,6 +42,6 @@ public class TehtavaController {
             return ResponseEntity.ok(poistettu);
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(String.format("Tehtävää ei löydetty, ei voitu poistaa. Tarkista id:", id));
+                .body(String.format("Tehtävää ei löydetty, ei voitu poistaa. Tarkista id."));
     }
 }
