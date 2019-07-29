@@ -1,0 +1,21 @@
+.tehtavaform{
+    padding-left: 40px;
+    font-family: "Palatino Linotype";
+    font-size: large;
+}
+.tekstiruutu{
+    width: 280px;
+    border-radius: 1px;
+    height: 22px;
+}
+.lisaabutton{
+    background-color: pink;
+    font-size: 15px;
+    font-family: Bahnschrift;
+    border-radius: 5px;
+    border: 2px solid pink;
+    padding: 4px 12px;
+}
+.lisaabutton:hover{
+    background-color: white;
+}

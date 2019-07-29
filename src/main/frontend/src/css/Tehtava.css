@@ -1,0 +1,21 @@
+.button{
+    background-color: lightpink;
+    font-size: 14px;
+    font-family: Bahnschrift;
+    border-radius: 5px;
+    border: 2px solid lightpink;
+    padding: 4px 10px;
+}
+.button:hover{
+    background-color: white;
+}
+.teksti{
+    font-family: "Palatino Linotype";
+    font-size: large;
+}
+.tehtava{
+    border: 1px solid pink;
+    padding-left: 25px;
+    border-top: 2px solid hotpink;
+    width: 40%;
+}

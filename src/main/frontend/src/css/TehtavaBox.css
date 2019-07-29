@@ -1,0 +1,10 @@
+h1{
+    text-align: left;
+    font-family: "Rockwell Nova Light";
+    padding-left: 250px;
+}
+body{
+    background-image: url("art-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
